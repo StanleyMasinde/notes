@@ -4,13 +4,14 @@
   "version": "0.1.0",
   "description": "A simple note taking app that does not track your data",
   "author": "Stanley Masinde",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "dexie": "^3.2.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {
@@ -20,5 +21,19 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24",
     "vite": "^2.9.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StanleyMasinde/notes.git"
+  },
+  "keywords": [
+    "Notes",
+    "PWA",
+    "Vite",
+    "Tailwind"
+  ],
+  "bugs": {
+    "url": "https://github.com/StanleyMasinde/notes/issues"
+  },
+  "homepage": "https://github.com/StanleyMasinde/notes#readme"
 }
