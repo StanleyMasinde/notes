@@ -35,13 +35,13 @@
   </nav>
 
   <section class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2">
-    <div v-for="i in 50" :key="i" class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white">
+    <div v-for="i in 5" :key="i" class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white">
       Hohohho
     </div>
   </section>
 
   <div class=" fixed bottom-1 right-1">
-    <button class=" bg-white dark:bg-black dark:text-white p-4 rounded-full shadow-lg">
+    <button @click="toggleCreateForm" class=" bg-white dark:bg-black dark:text-white p-4 rounded-full shadow-lg">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
         stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round"
@@ -49,8 +49,31 @@
       </svg>
     </button>
   </div>
+
+  <section v-if="showCreateForm" class=" z-10 h-screen fixed w-full top-0 bg-white dark:bg-black dark:text-white">
+    <nav class="py-3">
+      <ul class="grid grid-cols-11">
+        <li>
+          <svg @click="toggleCreateForm" xmlns="http://www.w3.org/2000/svg" class="h-12 w-10 text-2xl" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </li>
+        <li class=" col-span-9">
+          <input type="text" name="title" id="title" class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl" placeholder="Title">
+        </li>
+      </ul>
+    </nav>
+    <textarea class="w-screen h-screen dark:bg-black border-0 focus:ring-0 caret-[#ffe500] text-xl"></textarea>
+  </section>
 </template>
 
 <script setup>
-// 
+import { ref } from '@vue/reactivity';
+
+const showCreateForm = ref(false)
+
+const toggleCreateForm = () => {
+  showCreateForm.value = !showCreateForm.value
+}
 </script>
