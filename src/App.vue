@@ -2,12 +2,11 @@
   <div class="text-center dark:bg-black dark:text-white h-64 flex justify-center align-middle flex-col px-2">
     <div>
       <h1 class=" text-3xl">All notes</h1>
-      <p class=" font-light">0 notes</p>
+      <p class=" font-light">{{ notes.length }} {{ notes.length === 1 ? 'note' : 'notes' }}</p>
     </div>
   </div>
 
   <nav class="flex justify-between px-2 sticky top-0 bg-white dark:bg-black dark:text-white py-3">
-    {{ topPos }}
     <ul>
       <li>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -34,9 +33,16 @@
     </ul>
   </nav>
 
-  <section class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2">
-    <div v-for="i in 5" :key="i" class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white">
-      Hohohho
+
+  <section class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white min-h-[60vh]">
+    <div v-for="(note, i) in notes" :key="i">
+      <div class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white px-2 py-2">
+        <p class=" text-xs">{{ note.body }}</p>
+      </div>
+      <div class="text-center">
+        <h1 class=" font-semibold">{{ note.title }}</h1>
+        <h1>{{ new Date(note.createdAt).toLocaleDateString() }}</h1>
+      </div>
     </div>
   </section>
 
@@ -54,26 +60,58 @@
     <nav class="py-3">
       <ul class="grid grid-cols-11">
         <li>
-          <svg @click="toggleCreateForm" xmlns="http://www.w3.org/2000/svg" class="h-12 w-10 text-2xl" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            stroke-width="2">
+          <svg @click="toggleCreateForm" xmlns="http://www.w3.org/2000/svg" class="h-12 w-10 text-2xl" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </li>
         <li class=" col-span-9">
-          <input type="text" name="title" id="title" class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl" placeholder="Title">
+          <input v-model="newNoteData.title" type="text" name="title" id="title"
+            class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl"
+            placeholder="Title">
         </li>
       </ul>
     </nav>
-    <textarea class="w-screen h-screen dark:bg-black border-0 focus:ring-0 caret-[#ffe500] text-xl"></textarea>
+    <textarea v-model="newNoteData.body"
+      class="w-screen h-screen dark:bg-black border-0 focus:ring-0 caret-[#ffe500] text-xl"></textarea>
   </section>
 </template>
 
 <script setup>
-import { ref } from '@vue/reactivity';
+import { reactive, ref } from '@vue/reactivity';
+import { computed, onMounted, watch } from '@vue/runtime-core';
+import { db } from './db';
 
 const showCreateForm = ref(false)
+const notes = ref([])
+const newNoteData = reactive({
+  title: null,
+  body: null
+})
+
+const getNotes = async () => {
+  const nts = await db.notes.toArray()
+  notes.value = nts
+  return
+}
+
+onMounted(() => {
+  getNotes()
+})
 
 const toggleCreateForm = () => {
+  if (showCreateForm.value) {
+    if (newNoteData.body) {
+      db.notes.put({
+        title: newNoteData.title,
+        body: newNoteData.body,
+        createdAt: new Date()
+      })
+      getNotes()
+      newNoteData.title = null
+      newNoteData.body = null
+    }
+  }
   showCreateForm.value = !showCreateForm.value
 }
 </script>

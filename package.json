@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dexie": "^3.2.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {
