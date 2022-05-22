@@ -240,6 +240,10 @@ const updateNote = async (note) => {
 
 onMounted(() => {
   getNotes()
+  console.log(location.search)
+  if(location.search === '?new') {
+    showCreateForm.value = true
+  }
 })
 
 const toggleCreateForm = () => {
