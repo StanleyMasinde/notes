@@ -4,6 +4,7 @@
     "theme_color": "#ffe500",
     "background_color": "#fafafa",
     "display": "standalone",
+    "description": "Web Notes App",
     "scope": "/",
     "start_url": "/",
     "icons": [
@@ -60,6 +61,14 @@
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "maskable any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "New Note",
+            "short_name": "Note",
+            "description": "Create a new note",
+            "url": "/?new"
         }
     ]
 }
