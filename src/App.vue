@@ -33,14 +33,14 @@
     </ul>
   </nav>
 
-  <div v-if="notes.length === 0" class="text-center h-[69vh] flex flex-col justify-center">
+  <div v-if="notes.length === 0" class="text-center h-[100vh] flex flex-col px-2">
     <div>
       <h1 class=" text-2xl font-semibold">You have no notes</h1>
       <p class=" text-lg font-thin">Click the button on the bottom right to create the first one</p>
     </div>
   </div>
 
-  <section v-else class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white min-h-[60vh]">
+  <section v-else class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white min-h-[100vh]">
     <div v-for="(note, i) in notes" :key="i" @click.prevent="editNote(note)">
       <div class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white px-2 py-2">
         <p class=" text-xs">{{ note.body }}</p>
