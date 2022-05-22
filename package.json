@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/notes/",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
