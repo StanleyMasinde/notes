@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/stanleymasinde/",
     "preview": "vite preview"
   },
   "dependencies": {
