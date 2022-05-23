@@ -246,7 +246,7 @@ onMounted(() => {
   }
 
   const parsedUrl = new URL(window.location);
-  if (parsedUrl.searchParams.get('shared_title')) {
+  if (parsedUrl.searchParams.get('shared_title') || parsedUrl.searchParams.get('shared_text') || parsedUrl.searchParams.get('shared_url')) {
     showCreateForm.value = true
     newNoteData.body = parsedUrl.searchParams.get('shared_title')
     newNoteData.body = newNoteData.body + parsedUrl.searchParams.get('shared_text')
