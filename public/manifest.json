@@ -60,7 +60,12 @@
             "short_name": "Note",
             "description": "Create a new note",
             "url": "/?new",
-            "icon": "/create.png"
+            "icons": [
+                {
+                    "src": "/create.png",
+                    "sizes": "98x98"
+                }
+            ]
         }
     ]
 }
