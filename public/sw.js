@@ -2,27 +2,15 @@
  * The main service worker file. 
  * Author: Stanley Masinde
  */
-const version = 'v6'
+const version = 'v9'
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open(version).then(cache => {
-            cache.addAll([
+        caches.open(version).then(async(cache) => {
+           await cache.addAll([
                 '/',
-                '/manifest.json',
-                '/icons/icon-48x48.png',
-                '/icons/icon-72x72.png',
-                '/icons/icon-96x96.png',
-                '/icons/icon-128x128.png',
-                '/icons/icon-144x144.png',
-                '/icons/icon-152x152.png',
-                '/icons/icon-192x192.png',
-                '/icons/icon-384x384.png',
-                '/icons/icon-512x512.png',
             ])
-        })
+        }).then(() => self.skipWaiting())
     )
-
-	self.skipWaiting()
 })
 
 // // ----------------------------------------------------------------------------
