@@ -248,9 +248,22 @@ onMounted(() => {
   const parsedUrl = new URL(window.location);
   if (parsedUrl.searchParams.get('shared_title') || parsedUrl.searchParams.get('shared_text') || parsedUrl.searchParams.get('shared_url')) {
     showCreateForm.value = true
-    newNoteData.body = parsedUrl.searchParams.get('shared_title') + '\n' || ''
-    newNoteData.body = newNoteData.body + parsedUrl.searchParams.get('shared_text') + '\n' || ''
-    newNoteData.body = newNoteData.body + '\n\n' + parsedUrl.searchParams.get('shared_url') || ''
+    const title = parsedUrl.searchParams.get('shared_title')
+    const text = parsedUrl.searchParams.get('shared_text')
+    const url = parsedUrl.searchParams.get('shared_url')
+
+    if (title) {
+      newNoteData.title = title
+    }
+    if (text) {
+      newNoteData.body = text
+    }
+    if (url) {
+      newNoteData.body += `\n\n${url}`
+    }
+
+    newNoteData.body = newNoteData.body.replace('null', '')
+    newNoteData.body = newNoteData.body.replace('undefined', '')
   }
 })
 
