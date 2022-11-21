@@ -88,13 +88,13 @@
           </svg>
         </li>
         <li class=" col-span-9">
-          <input v-model="newNoteData.title" type="text" name="title" id="title"
+          <input v-model="newNoteData.title" type="text" name="title" id="title" v-auto-focus
             class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl"
             placeholder="Title">
         </li>
       </ul>
     </nav>
-    <textarea autofocus v-model="newNoteData.body"
+    <textarea v-model="newNoteData.body"
       class="w-screen h-screen dark:bg-black border-0 focus:ring-0 caret-[#3a3500] dark:caret-[#ffe500] text-xl"></textarea>
   </section>
   <!--/Form for creating a new note-->
@@ -110,7 +110,7 @@
           </svg>
         </li>
         <li class="col-span-9">
-          <input v-model="currentNote.title" type="text" name="title" id="title"
+          <input v-model="currentNote.title" type="text" name="title" id="title" v-auto-focus
             class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl"
             placeholder="Title">
         </li>
@@ -140,7 +140,7 @@
           </svg>
         </li>
         <li class=" col-span-9">
-          <input autofocus v-model="searchQuery" type="text" name="title" id="title"
+          <input v-model="searchQuery" type="text" name="title" id="title" v-auto-focus
             class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl"
             placeholder="Search">
         </li>
@@ -167,6 +167,7 @@
 <script setup>
 import { reactive, ref } from '@vue/reactivity';
 import { onMounted, watch } from '@vue/runtime-core';
+import { vAutoFocus } from "./directives/vAutoFocus";
 import { db } from './db';
 
 const showCreateForm = ref(false)
