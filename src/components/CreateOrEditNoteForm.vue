@@ -46,6 +46,9 @@
               text-2xl
             "
             placeholder="Title"
+            @keydown.enter.prevent="noteBodyFocus"
+            @keydown.down="noteBodyFocus"
+            ref="noteTitleRef"
           />
         </li>
         <li>
@@ -69,12 +72,14 @@
         dark:caret-[#ffe500]
         text-xl
       "
+      ref="noteBodyRef"
+      @keydown.up="noteTitleRef.focus()"
     ></textarea>
   </section>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { vAutoFocus } from "../directives/vAutoFocus";
 
 const props = defineProps({
@@ -93,5 +98,13 @@ const emit = defineEmits(['update:ModelValue', 'closeForm'])
 const noteData = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:ModelValue', value)
-})
+});
+
+const noteBodyRef = ref(null)
+const noteTitleRef = ref(null)
+
+const noteBodyFocus = () => {
+  if(props.modelValue.title) noteBodyRef.value.focus()
+};
+
 </script>
