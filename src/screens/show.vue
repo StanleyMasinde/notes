@@ -38,7 +38,7 @@
         <div class="px-2 prose dark:prose-invert">
             <h1>{{ note?.title }}</h1>
             <small>{{ note?.createdAt }}</small>
-            <div v-html="marked.parse(note?.body || '')"></div>
+            <div v-if="note.body" v-html="marked.parse(note?.body || '')"></div>
         </div>
     </main>
 </template>
