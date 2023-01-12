@@ -688,7 +688,7 @@
             "name": "New Note",
             "short_name": "Note",
             "description": "Create a new note",
-            "url": "/?new",
+            "url": "/create/",
             "icons": [
                 {
                     "src": "/create.png",

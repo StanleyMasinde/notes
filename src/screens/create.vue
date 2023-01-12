@@ -36,12 +36,13 @@
 
 <script lang="ts" setup>
 import { Ref, ref } from 'vue';
-import { onBeforeRouteLeave } from 'vue-router';
+import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import { db } from '../db';
 
 
 const noteBody: Ref<string> = ref('')
 const noteTitle: Ref<string> = ref('')
+const $route = useRoute()
 
 onBeforeRouteLeave(async () => {
   if (noteBody.value) {
@@ -53,4 +54,24 @@ onBeforeRouteLeave(async () => {
   }
 })
 
+// @ts-expect-error
+const parsedUrl = new URL(window.location);
+if (parsedUrl.searchParams.get('shared_title') || parsedUrl.searchParams.get('shared_text') || parsedUrl.searchParams.get('shared_url')) {
+  const title = parsedUrl.searchParams.get('shared_title')
+  const text = parsedUrl.searchParams.get('shared_text')
+  const url = parsedUrl.searchParams.get('shared_url')
+
+  if (title) {
+    noteTitle.value = title
+  }
+  if (text) {
+    noteBody.value = text
+  }
+  if (url) {
+    noteBody.value += `\n\n${url}`
+  }
+
+  noteBody.value = noteBody.value.replace('null', '')
+    .replace('undefined', '')
+}
 </script>

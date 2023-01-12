@@ -117,30 +117,5 @@ const showNote = (note) => {
 }
 onMounted(() => {
     getNotes()
-    console.log(location.search)
-    if (location.search === '?new') {
-        showCreateForm.value = true
-    }
-
-    const parsedUrl = new URL(window.location);
-    if (parsedUrl.searchParams.get('shared_title') || parsedUrl.searchParams.get('shared_text') || parsedUrl.searchParams.get('shared_url')) {
-        showCreateForm.value = true
-        const title = parsedUrl.searchParams.get('shared_title')
-        const text = parsedUrl.searchParams.get('shared_text')
-        const url = parsedUrl.searchParams.get('shared_url')
-
-        if (title) {
-            newNoteData.title = title
-        }
-        if (text) {
-            newNoteData.body = text
-        }
-        if (url) {
-            newNoteData.body += `\n\n${url}`
-        }
-
-        newNoteData.body = newNoteData.body.replace('null', '')
-        newNoteData.body = newNoteData.body.replace('undefined', '')
-    }
 })
 </script>
