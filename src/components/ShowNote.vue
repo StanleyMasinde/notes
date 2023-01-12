@@ -39,7 +39,7 @@
                 </li>
             </ul>
         </nav>
-        <div class="px-2 prose">
+        <div class="px-2 prose dark:prose-invert">
             <h1>{{ note.title }}</h1>
             <small>{{ note.createdAt }}</small>
             <div v-html="marked.parse(note.body)"></div>
