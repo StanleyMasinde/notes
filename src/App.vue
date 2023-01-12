@@ -51,14 +51,15 @@
   </div>
 
   <section v-else class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white">
-    <div v-for="(note, i) in notes" :key="i" @click.prevent="editNote(note)">
+    <div v-for="(note, i) in notes" :key="i" @click.prevent="showNote(note)">
       <div class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white px-2 py-2">
-        <p class="text-xs line-clamp-[11]">{{ note.body }}</p>
+        <p class="text-xs line-clamp-[11]" v-html="marked.parse(note.body)"></p>
       </div>
       <div class="text-center">
         <h1 class=" font-semibold">{{ note.title }}</h1>
-        <p class=" font-thin text-sm">{{ new Date(note.createdAt).toLocaleDateString() }} {{ new
-            Date(note.createdAt).toLocaleTimeString()
+        <p class=" font-thin text-sm">{{ new Date(note.createdAt).toLocaleDateString() }} {{
+          new
+                  Date(note.createdAt).toLocaleTimeString()
         }}</p>
       </div>
     </div>
@@ -78,21 +79,17 @@
   <!--/Floating button for adding a new note-->
 
   <!--Form for creating a new note-->
-  <CreateOrEditNoteFormVue 
-    v-if="showCreateForm"
-    :model-value="newNoteData" 
-    @close-form="toggleCreateForm"
-  />
+  <CreateOrEditNoteFormVue v-if="showCreateForm" :model-value="newNoteData" @close-form="toggleCreateForm" />
   <!--/Form for creating a new note-->
 
   <!--Form for editing a note-->
-  <CreateOrEditNoteFormVue 
-    v-if="showEditForm"
-    :model-value="currentNote" 
-    @close-form="updateNote(currentNote)"
-    :edit-mode="true"
-  />
+  <CreateOrEditNoteFormVue v-if="showEditForm" :model-value="currentNote" @close-form="updateNote(currentNote)"
+    :edit-mode="true" />
   <!--/Form for editing a note-->
+
+  <!--View note-->
+  <ShowNote @close="async() => {viewNoteComponent = false;await getNotes()}" v-if="viewNoteComponent" :note="currentActiveNote" />
+  <!--/View note-->
 
 
   <!--Search Menu-->
@@ -120,8 +117,9 @@
         </div>
         <div class="text-center">
           <h1 class=" font-semibold">{{ note.title }}</h1>
-          <p class=" font-thin text-sm">{{ new Date(note.createdAt).toLocaleDateString() }} {{ new
-              Date(note.createdAt).toLocaleTimeString()
+          <p class=" font-thin text-sm">{{ new Date(note.createdAt).toLocaleDateString() }} {{
+            new
+          Date(note.createdAt).toLocaleTimeString()
           }}</p>
         </div>
       </div>
@@ -131,11 +129,13 @@
 </template>
 
 <script setup>
+import { marked } from 'marked'
 import { reactive, ref } from '@vue/reactivity';
 import { onMounted, watch } from '@vue/runtime-core';
 import { vAutoFocus } from "./directives/vAutoFocus";
 import { db } from './db';
 import CreateOrEditNoteFormVue from './components/CreateOrEditNoteForm.vue';
+import ShowNote from './components/ShowNote.vue';
 
 const showCreateForm = ref(false)
 const showEditForm = ref(false)
@@ -144,6 +144,8 @@ const searchQuery = ref('')
 const searchResults = ref([])
 const navMenu = ref(false)
 const notes = ref([])
+const viewNoteComponent = ref(false)
+const currentActiveNote = ref('')
 const newNoteData = reactive({
   title: null,
   body: null
@@ -175,12 +177,6 @@ const searchNotes = async () => {
   return
 }
 
-const deleteNote = async (note) => {
-  await db.notes.delete(note.id)
-  await getNotes()
-  showEditForm.value = false
-  return
-}
 
 watch(searchQuery, () => {
   searchNotes()
@@ -195,6 +191,11 @@ const editNote = async (note) => {
   currentNote.body = nt.body
   navMenu.value = false
   showEditForm.value = true
+}
+
+const showNote = (note) => {
+  currentActiveNote.value = note
+  viewNoteComponent.value = true
 }
 
 const updateNote = async (note) => {
