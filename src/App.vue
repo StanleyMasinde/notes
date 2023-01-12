@@ -88,7 +88,7 @@
   <!--/Form for editing a note-->
 
   <!--View note-->
-  <ShowNote @close="() => viewNoteComponent = false" v-if="viewNoteComponent" :note="currentActiveNote" />
+  <ShowNote @close="async() => {viewNoteComponent = false;await getNotes()}" v-if="viewNoteComponent" :note="currentActiveNote" />
   <!--/View note-->
 
 
@@ -177,12 +177,6 @@ const searchNotes = async () => {
   return
 }
 
-const deleteNote = async (note) => {
-  await db.notes.delete(note.id)
-  await getNotes()
-  showEditForm.value = false
-  return
-}
 
 watch(searchQuery, () => {
   searchNotes()
