@@ -53,7 +53,7 @@
   <section v-else class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white">
     <div v-for="(note, i) in notes" :key="i" @click.prevent="editNote(note)">
       <div class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white px-2 py-2">
-        <p class="text-xs line-clamp-[11]">{{ note.body }}</p>
+        <p class="text-xs line-clamp-[11]" v-html="marked.parse(note.body)"></p>
       </div>
       <div class="text-center">
         <h1 class=" font-semibold">{{ note.title }}</h1>
@@ -131,6 +131,7 @@
 </template>
 
 <script setup>
+import { marked } from 'marked'
 import { reactive, ref } from '@vue/reactivity';
 import { onMounted, watch } from '@vue/runtime-core';
 import { vAutoFocus } from "./directives/vAutoFocus";
