@@ -8,10 +8,6 @@ self.addEventListener('install', event => {
         caches.open(version).then(async(cache) => {
            await cache.addAll([
                 '/',
-				'/create',
-				'/edit',
-				'/search',
-				'/show'
             ])
         }).then(() => self.skipWaiting())
     )
