@@ -19,11 +19,13 @@
 
         <ul class="flex">
             <li class="mx-3">
-                <svg @click="showSearchMenu = true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                <RouterLink to="/search?">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </RouterLink>
             </li>
             <li>
                 <div class="relative">
@@ -58,10 +60,9 @@
             </div>
             <div class="text-center">
                 <h1 class=" font-semibold">{{ note?.title }}</h1>
-                <p class=" font-thin text-sm">{{ new Date(note?.createdAt).toLocaleDateString() }} {{
-                    new
-                                    Date(note?.createdAt).toLocaleTimeString()
-                }}</p>
+                <p class=" font-thin text-sm">
+                    {{ new Date(note?.createdAt).toLocaleDateString() }}
+                    {{ new Date(note?.createdAt).toLocaleTimeString() }}</p>
             </div>
         </RouterLink>
     </section>
@@ -71,82 +72,26 @@
     <div class=" fixed bottom-1 right-1">
         <RouterLink to="/create">
             <button class="bg-white dark:bg-black dark:text-white p-4 rounded-full shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
             </button>
         </RouterLink>
     </div>
     <!--/Floating button for adding a new note-->
 
-    <!--Form for creating a new note-->
-    <CreateOrEditNoteFormVue v-if="showCreateForm" :model-value="newNoteData" @close-form="toggleCreateForm" />
-    <!--/Form for creating a new note-->
 
-    <!--Form for editing a note-->
-    <CreateOrEditNoteFormVue v-if="showEditForm" :model-value="currentNote" @close-form="updateNote(currentNote)"
-        :edit-mode="true" />
-    <!--/Form for editing a note-->
-
-    <!--View note-->
-    <ShowNote @close="async () => { viewNoteComponent = false; await getNotes() }" v-if="viewNoteComponent"
-        :note="currentActiveNote" />
-    <!--/View note-->
-
-
-    <!--Search Menu-->
-    <div v-if="showSearchMenu" class="fixed top-0 left-0 w-full h-screen bg-white dark:bg-black dark:text-white">
-        <nav class="py-3">
-            <ul class="grid grid-cols-11">
-                <li>
-                    <svg @click="showSearchMenu = false; searchResults = []; searchQuery = ''"
-                        xmlns="http://www.w3.org/2000/svg" class="h-12 w-10 text-2xl" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </li>
-                <li class=" col-span-9">
-                    <input v-model="searchQuery" type="text" name="title" id="title" v-auto-focus
-                        class="border-0 w-full caret-[#ffe500] dark:bg-black focus:ring-0 placeholder:font-semibold placeholder:text-2xl text-2xl"
-                        placeholder="Search">
-                </li>
-            </ul>
-        </nav>
-
-        <div class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white min-h-[100vh]">
-            <div v-for="(note, i) in searchResults" :key="i" @click.prevent="editNote(note)">
-                <div class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white px-2 py-2">
-                    <p class=" text-xs">{{ note.body }}</p>
-                </div>
-                <div class="text-center">
-                    <h1 class=" font-semibold">{{ note.title }}</h1>
-                    <p class=" font-thin text-sm">{{ new Date(note.createdAt).toLocaleDateString() }} {{
-                        new
-                    Date(note.createdAt).toLocaleTimeString()
-                    }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/Search menu-->
 </template>
 
 <script setup>
 import { marked } from 'marked'
 import { reactive, ref } from '@vue/reactivity';
-import { onMounted, watch } from '@vue/runtime-core';
-import { vAutoFocus } from '../directives/vAutoFocus';
+import { onMounted } from '@vue/runtime-core';
 import { db } from '../db';
-import CreateOrEditNoteFormVue from '../components/CreateOrEditNoteForm.vue';
-import ShowNote from '../components/ShowNote.vue';
 
 const showCreateForm = ref(false)
-const showEditForm = ref(false)
-const showSearchMenu = ref(false)
-const searchQuery = ref('')
-const searchResults = ref([])
 const navMenu = ref(false)
 const notes = ref([])
 const viewNoteComponent = ref(false)
@@ -166,52 +111,10 @@ const getNotes = async () => {
     notes.value = nts
     return
 }
-
-const searchNotes = async () => {
-    if (searchQuery.value.length === 0) {
-        searchResults.value = []
-        return
-    }
-    const nts = await db.notes.where('title')
-        .startsWithIgnoreCase(searchQuery.value)
-        .or('body')
-        .startsWithIgnoreCase(searchQuery.value)
-        .reverse()
-        .toArray()
-    searchResults.value = nts
-    return
-}
-
-
-watch(searchQuery, () => {
-    searchNotes()
-})
-
-const editNote = async (note) => {
-    const nt = await db.notes.where({
-        id: note.id
-    }).first()
-    currentNote.id = nt.id
-    currentNote.title = nt.title
-    currentNote.body = nt.body
-    navMenu.value = false
-    showEditForm.value = true
-}
-
 const showNote = (note) => {
     currentActiveNote.value = note
     viewNoteComponent.value = true
 }
-
-const updateNote = async (note) => {
-    await db.notes.update(note.id, {
-        title: note.title,
-        body: note.body
-    })
-    getNotes()
-    showEditForm.value = false
-}
-
 onMounted(() => {
     getNotes()
     console.log(location.search)
@@ -240,21 +143,4 @@ onMounted(() => {
         newNoteData.body = newNoteData.body.replace('undefined', '')
     }
 })
-
-const toggleCreateForm = () => {
-    if (showCreateForm.value) {
-        if (newNoteData.body) {
-            db.notes.put({
-                title: newNoteData.title,
-                body: newNoteData.body,
-                createdAt: new Date()
-            })
-            getNotes()
-            newNoteData.title = null
-            newNoteData.body = null
-        }
-    }
-    navMenu.value = false
-    showCreateForm.value = !showCreateForm.value
-}
 </script>
