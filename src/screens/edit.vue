@@ -3,8 +3,8 @@
         <ul class="grid grid-cols-11">
             <li>
                 <RouterLink :to="`/notes/${noteId}`">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-10 text-2xl cursor-pointer" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-10 text-2xl dark:text-white cursor-pointer"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                 </RouterLink>
@@ -15,6 +15,7 @@
               w-full
               caret-[#ffe500]
               dark:bg-black
+              dark:text-white
               focus:ring-0
               placeholder:font-semibold placeholder:text-2xl
               text-2xl
@@ -26,6 +27,7 @@
         w-screen
         h-screen
         dark:bg-black
+        dark:text-white
         border-0
         focus:ring-0
         caret-[#3a3500]
