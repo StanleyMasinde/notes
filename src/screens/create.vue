@@ -41,9 +41,15 @@ import { Ref, ref } from 'vue';
 import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import { db } from '../db';
 
+interface ShareSchema {
+  shared_title?: string,
+  shared_text?: string,
+  shared_url?: string
+}
 
-const noteBody: Ref<string> = ref('')
-const noteTitle: Ref<string> = ref('')
+
+const noteBody: Ref<string | undefined> = ref('')
+const noteTitle: Ref<string | undefined> = ref('')
 const $route = useRoute()
 
 onBeforeRouteLeave(async () => {
@@ -56,24 +62,13 @@ onBeforeRouteLeave(async () => {
   }
 })
 
-// @ts-expect-error
-const parsedUrl = new URL(window.location);
-if (parsedUrl.searchParams.get('shared_title') || parsedUrl.searchParams.get('shared_text') || parsedUrl.searchParams.get('shared_url')) {
-  const title = parsedUrl.searchParams.get('shared_title')
-  const text = parsedUrl.searchParams.get('shared_text')
-  const url = parsedUrl.searchParams.get('shared_url')
-
-  if (title) {
-    noteTitle.value = title
-  }
-  if (text) {
-    noteBody.value = text
-  }
-  if (url) {
-    noteBody.value += `\n\n${url}`
-  }
-
-  noteBody.value = noteBody.value.replace('null', '')
+const shareObject: ShareSchema = $route.query
+if (shareObject.shared_title || shareObject.shared_text || shareObject.shared_url) {
+  const { shared_title, shared_text, shared_url } = shareObject
+  noteTitle.value = shared_title
+  noteBody.value = shared_text
+  noteBody.value += `\n\n${shared_url}`
+  noteBody.value = noteBody.value?.replace('null', '')
     .replace('undefined', '')
 }
 </script>

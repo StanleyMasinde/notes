@@ -1,5 +1,5 @@
 {
-    "name": "Web Notes App",
+    "name": "Notes App",
     "short_name": "Notes",
     "theme_color": "#ffe500",
     "background_color": "#fafafa",
@@ -698,7 +698,7 @@
         }
     ],
     "share_target": {
-        "action": "/",
+        "action": "#/create/",
         "method": "GET",
         "enctype": "application/x-www-form-urlencoded",
         "params": {
