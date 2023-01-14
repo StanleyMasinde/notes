@@ -3,14 +3,16 @@
 
 ### How it works
 This application is meant to work completely offline. You only need to connect to the internet when installing it or when there is a new update. The underlying tech is the [indexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) API. 
-All your notes are stored on your device's browser storage so clearing your browser data will also delete your notes. You can try it [here](https://notes-238cd.web.app) 
+All your notes are stored on your device's browser storage so clearing your browser data will also delete your notes. You can try it [here](https://notes-n.netlify.app) 
 
 ### Tech used
 * [Tailwind.CSS](https://tailwindcss.com) for styling
 * [Dexie.JS](https://dexie.org) A wrapper around somewhat complex indexed db
 * [Vue.JS](https://vuejs.org) needs no introduction
-* [Firebase hosting](https://firebase.google.com/docs/hosting) focus on the product not the server
-* [Github actions](https://github.com/features/actions) To automate code deployment to firebase.
+* [Vue Router](https://router.vuejs.org) The offlicial routing library for Vue.JS
+* [Netlify hosting](https://www.netlify.com) focus on the product not hosting
+* [Marked](https://marked.js.org) For Markdown support
+* [Vite](https://vitejs.dev) Next generation frontend tooling
 
 ### Features
 * Installable as a PWA
@@ -33,9 +35,10 @@ All your notes are stored on your device's browser storage so clearing your brow
 1. Clone this repositoty
 2. Install dependencies with `npm install`
 3. Run `npm run dev` and you make changes.
-4. Preview live changes on http:://localhost:3000
+4. Preview live changes on <http:://localhost:5137>
 
 
 ### Contributions && suggestions
-All contributions are welcome
+All contributions are welcome. If you have suggestions or you'd like to raise a bug raise an issue. 
+Thank you for Stopping by.
 
