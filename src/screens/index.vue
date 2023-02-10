@@ -59,7 +59,7 @@
                 <div class="prose prose-green dark:prose-invert" v-html="marked.parse(note?.body || '')"></div>
             </div>
             <div class="text-center">
-                <h1 class=" font-semibold">{{ note?.title }}</h1>
+                <h1 class=" font-semibold truncate">{{ note?.title }}</h1>
                 <p class=" font-thin text-sm">
                     {{ new Date(note?.createdAt).toLocaleDateString() }}
                     {{ new Date(note?.createdAt).toLocaleTimeString() }}</p>
