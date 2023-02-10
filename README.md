@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a3e32b59-108f-4d8a-b9ba-b8d5e4e811e6/deploy-status)](https://app.netlify.com/sites/notes-n/deploys)
+
 # Notes App
 > Inspired by Samsung notes. I wanted to create a web application with the same features as the Samsung notes web application.
 
