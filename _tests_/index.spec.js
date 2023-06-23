@@ -1,7 +1,11 @@
 import {mount} from '@vue/test-utils'
-import indexVue from '../src/screens/index.vue'
+import Share from '../src/components/Share.vue'
 import { expect, test } from 'vitest'
 
-test('Mount page', async () => {
-    expect(indexVue).toBeTruthy()
+test('Share component', async () => {
+    expect(Share).toBeTruthy()
+
+    const wrapper = mount(Share, {props: {content: 'This is a note'}})
+
+    wrapper.find('button').trigger('click')
 })

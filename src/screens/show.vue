@@ -14,6 +14,9 @@
             <li>
                 <ul class="flex gap-3 mr-1">
                     <li>
+                        <Share :content="note.body"></Share>
+                    </li>
+                    <li>
                         <RouterLink :to="`/notes/${note?.id}/edit`">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-7 h-7 cursor-pointer dark:text-white">
@@ -46,6 +49,7 @@ import { marked } from 'marked';
 import { onBeforeMount, ref, Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { db } from '../db';
+import Share from '../components/Share.vue';
 interface Note {
     id: number,
     title: string,
