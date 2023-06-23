@@ -58,13 +58,6 @@ const note: Ref<Note> = ref({id: 0, title: '', body: '', createdAt: ''})
 const $route = useRoute()
 const $router = useRouter()
 
-const updateNote = async (note) => {
-    // @ts-expect-error
-    await db.notes.update(note.id, {
-        title: note.title,
-        body: note.body
-    })
-}
 
 const deleteNote = async (note: Note) => {
     await db.table('notes').delete(note.id)

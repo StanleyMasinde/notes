@@ -91,20 +91,10 @@ import { reactive, ref } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
 import { db } from '../db';
 
-const showCreateForm = ref(false)
 const navMenu = ref(false)
 const notes = ref([])
 const viewNoteComponent = ref(false)
 const currentActiveNote = ref('')
-const newNoteData = reactive({
-    title: null,
-    body: null
-})
-const currentNote = reactive({
-    id: null,
-    title: null,
-    body: null
-})
 
 const getNotes = async () => {
     const nts = await db.notes.reverse().toArray()
