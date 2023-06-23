@@ -3,7 +3,8 @@
         class="text-center dark:bg-black dark:text-white h-64 flex justify-center align-middle flex-col px-2">
         <div>
             <h1 class=" text-3xl">All notes</h1>
-            <p class=" font-light">{{ notes.length }} {{ notes.length === 1 ? 'note' : 'notes' }}</p>
+            <p v-if="notes.length > 0" class="font-light">{{ notes.length }} {{ notes.length === 1 ? 'note' : 'notes' }}</p>
+            <p v-else class="font-light">You don't have any notes</p>
         </div>
     </div>
 

@@ -23,7 +23,7 @@
             </li>
         </ul>
     </nav>
-    <textarea v-model="noteBody" class="
+    <textarea id="body" v-model="noteBody" class="
         w-screen
         h-screen
         dark:bg-black
