@@ -23,7 +23,7 @@
       </li>
     </ul>
   </nav>
-  <textarea id="body" v-model="noteBody" class="
+  <textarea ref="noteBodyRef" id="body" v-model="noteBody" class="
         w-screen
         h-screen
         dark:bg-black
@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Ref, ref } from 'vue';
+import { Ref, onMounted, ref } from 'vue';
 import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import { db } from '../db';
 
@@ -50,6 +50,8 @@ interface ShareSchema {
 
 const noteBody: Ref<string | undefined> = ref('')
 const noteTitle: Ref<string | undefined> = ref('')
+const noteTitleRef: Ref<HTMLInputElement | null> = ref(null)
+const noteBodyRef: Ref<HTMLTextAreaElement | null> = ref(null)
 const $route = useRoute()
 
 onBeforeRouteLeave(async () => {
@@ -71,4 +73,12 @@ if (shareObject.shared_title || shareObject.shared_text || shareObject.shared_ur
   noteBody.value = noteBody.value?.replace('null', '')
     .replace('undefined', '')
 }
+
+onMounted(() => {
+  noteTitleRef.value?.addEventListener('keydown', (event) => {
+    if(event.key == 'Enter') {
+      noteBodyRef.value?.focus()
+    }
+  })
+})
 </script>

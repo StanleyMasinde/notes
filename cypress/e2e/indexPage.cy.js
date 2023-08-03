@@ -6,7 +6,7 @@ describe('template spec', () => {
     cy.contains('All notes').should('exist')
     cy.contains('You don\'t have any notes').should('exist')
     cy.get('a[href="/create"]').click()
-    cy.get('input#title').type('This is a note')
+    cy.get('input#title').type('This is a note{enter}')
     cy.get('textarea#body').type("# I love taking notes{enter}This is an awesome application")
     cy.get('a[href="/"]').click()
     cy.get('a[href="/notes/1"]').click()
