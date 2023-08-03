@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+enum Socials {
+    TWITTER,
+    WHATSAPP,
+    TELEGRAM
+}
+
 const props = defineProps<{
     content: string
 }>()
@@ -39,9 +45,31 @@ const copyToClipboard = async () => {
     }
 }
 
-// TODO: I'm not sure I need this
-const createUrl = (url: string) => {
-    return encodeURIComponent(url)
+const shareIntent = (social: Socials): string  => {
+    let shareUrl: URL = new URL('https://example.com')
+    switch (social) {
+        case Socials.TELEGRAM: {
+            const url = new URL('https://t.me/share/url')
+            url.searchParams.append('url', props.content)
+            shareUrl = url
+        }
+        break;
+        case Socials.TWITTER: {
+            const url = new URL('https://twitter.com/intent/tweet')
+            url.searchParams.append('text', props.content)
+            shareUrl = url
+        }
+        break;
+        case Socials.WHATSAPP:
+            const url = new URL('https://wa.me/')
+            url.searchParams.append('text', props.content)
+            shareUrl = url
+            break
+        default:
+            break;
+    }
+
+    return shareUrl.toString()
 }
 </script>
 
@@ -61,13 +89,13 @@ const createUrl = (url: string) => {
                     <h1 class=" text-xl font-bold">Share this note</h1>
                 </div>
                 <div class="flex justify-center gap-5">
-                    <a :href="`https://twitter.com/intent/tweet?text=${content}`" target="_blank" title="Twitter">
+                    <a id="twitter" :href="shareIntent(Socials.TWITTER)" target="_blank" title="Twitter">
                         <svg class=" h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 276" fill="#3ba9ee">
                             <path
                                 d="m302 70a195 195 0 0 1 -299 175 142 142 0 0 0 97 -30 70 70 0 0 1 -58 -47 70 70 0 0 0 31 -2 70 70 0 0 1 -57 -66 70 70 0 0 0 28 5 70 70 0 0 1 -18 -90 195 195 0 0 0 141 72 67 67 0 0 1 116 -62 117 117 0 0 0 43 -17 65 65 0 0 1 -31 38 117 117 0 0 0 39 -11 65 65 0 0 1 -32 35" />
                         </svg>
                     </a>
-                    <a target="_blank" :href="`https://t.me/share/url?url=${createUrl(content)}`" title="Telegram">
+                    <a id="shareTelegram" target="_blank" :href="shareIntent(Socials.TELEGRAM)" title="Telegram">
                         <svg class="h-10" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
                             <g>
@@ -94,7 +122,7 @@ const createUrl = (url: string) => {
                             </g>
                         </svg>
                     </a>
-                    <a :href="`https://wa.me/?text=${content}`" target="_blank" title="whatsApp">
+                    <a id="whatsApp" :href="shareIntent(Socials.WHATSAPP)" target="_blank" title="whatsApp">
                         <svg class="h-10" viewBox="-2.73 0 1225.016 1225.016" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <path fill="#E0E0E0"
