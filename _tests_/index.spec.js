@@ -5,8 +5,15 @@ import { expect, test } from 'vitest'
 test('Share component', async () => {
     expect(Share).toBeTruthy()
     const content = '#This is a note\n'
-    const urlParamsFormat = new URLSearchParams(content).toString().replace('=', '');
-    console.log(urlParamsFormat.toString());
+    const expectedTwitterLink = new URL('https://twitter.com/intent/tweet')
+    expectedTwitterLink.searchParams.append('text', content)
+
+    const expectedWhatAppLink = new URL('https://wa.me')
+    expectedWhatAppLink.searchParams.append('text', content)
+
+    const expectedTelegramShareLink = new URL('https://t.me/share/url')
+    expectedTelegramShareLink.searchParams.append('url', content)
+    
     const wrapper = mount(Share, { props: { content } })
 
     await wrapper.find('button#shareButton').trigger('click')
@@ -14,8 +21,7 @@ test('Share component', async () => {
     const twitterShareLink = wrapper.find('a#twitter').attributes('href')
     const whatsAppShareLink = wrapper.find('a#whatsApp').attributes('href')
     const telegramShareLink = wrapper.find('a#shareTelegram').attributes('href')
-    console.log(twitterShareLink, whatsAppShareLink, telegramShareLink);
-    expect(twitterShareLink).toBe(`https://twitter.com/intent/tweet?text=${urlParamsFormat}`)
-    expect(whatsAppShareLink).toBe(`https://wa.me/?text=${urlParamsFormat}`)
-    expect(telegramShareLink).toBe(`https://t.me/share/url?url=${urlParamsFormat}`)
+    expect(twitterShareLink).toBe(expectedTwitterLink.toString())
+    expect(whatsAppShareLink).toBe(expectedWhatAppLink.toString())
+    expect(telegramShareLink).toBe(expectedTelegramShareLink.toString())
 })
