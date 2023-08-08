@@ -88,8 +88,8 @@
 
 <script setup>
 import { marked } from 'marked'
-import { reactive, ref } from '@vue/reactivity';
-import { onMounted } from '@vue/runtime-core';
+import { ref } from 'vue';
+import { onMounted } from 'vue';
 import { db } from '../db';
 
 const navMenu = ref(false)
