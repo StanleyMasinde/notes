@@ -1,6 +1,6 @@
 <template>
     <div @click="navMenu = false"
-        class="text-center dark:bg-black dark:text-white h-64 flex justify-center align-middle flex-col px-2">
+        class="text-center lg:hidden dark:bg-black dark:text-white h-64 flex justify-center align-middle flex-col px-2">
         <div>
             <h1 class=" text-3xl">All notes</h1>
             <p v-if="notes.length > 0" class="font-light">{{ notes.length }} {{ notes.length === 1 ? 'note' : 'notes' }}</p>
@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <nav class="flex justify-between px-2 sticky top-0 bg-white dark:bg-black dark:text-white py-3">
+    <nav class="flex justify-between px-2 sticky top-0 bg-white dark:bg-black dark:text-white py-3 lg:hidden">
         <ul>
             <li>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -47,15 +47,25 @@
     </nav>
 
     <div @click="navMenu = false" v-if="notes.length === 0"
-        class="text-center h-[95vh] flex flex-col px-2 dark:bg-black dark:text-white">
+        class="text-center h-[100vh] flex flex-col lg:justify-center px-2 dark:bg-black dark:text-white">
         <div>
-            <h1 class=" text-2xl font-semibold">You have no notes</h1>
-            <p class=" text-lg font-thin">Click the button on the bottom right to create the first one</p>
+            <h1 class="text-2xl lg:text-3xl font-semibold">You have no notes</h1>
+            <p class="font-thin text-lg hidden lg:block">When you start taking notes, they will appear here.</p>
+            <p class="text-lg lg:hidden font-thin">Click the button on the bottom right to create the first one</p>
+
+            <div class="flex justify-center">
+                <RouterLink to="/create">
+                    <button class="hidden lg:block border-2 border-black rounded-lg px-3 py-2 mt-4">
+                        Start taking notes
+                    </button>
+                </RouterLink>
+            </div>
         </div>
     </div>
 
-    <section v-else class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white">
-        <RouterLink :to="`/notes/${note.id}`" v-for="(note, i) in notes" :key="i" @click.prevent="showNote(note)">
+    <!--For small screens Tablet and below-->
+    <section v-else class="grid grid-cols-2 px-2 gap-1 dark:bg-black pt-2 dark:text-white lg:hidden">
+        <RouterLink :to="`/notes/${note.id}`" v-for="(note, i) in notes" :key="i">
             <div class="border-2 h-52 rounded-2xl dark:bg-gray-900 dark:text-white px-2 py-2 overflow-y-scroll">
                 <div class="prose prose-green dark:prose-invert" v-html="marked.parse(note?.body || '')"></div>
             </div>
@@ -68,9 +78,19 @@
         </RouterLink>
     </section>
 
+    <!--For large screens The landing page needs to be a different layout-->
+    <div class="w-52 border-2 rounded-r-lg min-h-screen flex flex-col gap-3 p-5">
+        <RouterLink :to="`/notes/${note.id}`" v-for="note in notes">
+            <div class="max-h-20">
+                <h3 class="font-bold">{{ note.title }}</h3>
+                <p class=" truncate">{{ note.body }}</p>
+            </div>
+        </RouterLink>
+    </div>
+
 
     <!--Floating button for adding a new note-->
-    <div class=" fixed bottom-1 right-1">
+    <div class="fixed bottom-1 right-1 lg:hidden">
         <RouterLink to="/create">
             <button class="bg-white dark:bg-black dark:text-white p-4 rounded-full shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -82,31 +102,31 @@
         </RouterLink>
     </div>
     <!--/Floating button for adding a new note-->
-
-
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { marked } from 'marked'
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 import { onMounted } from 'vue';
 import { db } from '../db';
+import { RouterLink } from 'vue-router';
+
+interface Note {
+    id: number,
+    title: string,
+    body: string,
+    createdAt: string
+}
 
 const navMenu = ref(false)
-const notes = ref([])
-const viewNoteComponent = ref(false)
-const currentActiveNote = ref('')
+const notes: Ref<Note[]> = ref([])
 
 const getNotes = async () => {
-    const nts = await db.notes.reverse().toArray()
+    const nts = await db.table<Note>('notes').reverse().toArray()
     notes.value = nts
     return
 }
-const showNote = (note) => {
-    currentActiveNote.value = note
-    viewNoteComponent.value = true
-}
-onMounted(() => {
-    getNotes()
+onMounted(async () => {
+    await getNotes()
 })
 </script>
