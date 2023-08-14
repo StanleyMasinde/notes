@@ -8,6 +8,9 @@
         </div>
     </div>
 
+
+
+    <!--Navigation for mobile-->
     <nav class="flex justify-between px-2 sticky top-0 bg-white dark:bg-black dark:text-white py-3 lg:hidden">
         <ul>
             <li>
@@ -55,7 +58,7 @@
 
             <div class="flex justify-center">
                 <RouterLink to="/create">
-                    <button class="hidden lg:block border-2 border-black rounded-lg px-3 py-2 mt-4">
+                    <button class="hidden lg:block border bg-primary text-white rounded-lg px-3 py-2 mt-4">
                         Start taking notes
                     </button>
                 </RouterLink>
@@ -79,13 +82,27 @@
     </section>
 
     <!--For large screens The landing page needs to be a different layout-->
-    <div class="w-52 border-2 rounded-r-lg min-h-screen flex flex-col gap-3 p-5">
-        <RouterLink :to="`/notes/${note.id}`" v-for="note in notes">
-            <div class="max-h-20">
-                <h3 class="font-bold">{{ note.title }}</h3>
-                <p class=" truncate">{{ note.body }}</p>
-            </div>
-        </RouterLink>
+    <div class="hidden lg:grid grid-rows-1 grid-cols-12">
+        <div class="border-2 h-screen flex flex-col gap-3 p-5 col-span-3 sticky top-0">
+            <RouterLink :to="`/note/${note.id}`" v-for="note in notes">
+                <div class="max-h-20">
+                    <h3 class="font-bold">{{ note.title }}</h3>
+                    <p class=" truncate">{{ note.body }}</p>
+                </div>
+            </RouterLink>
+        </div>
+        <!--Navigation for desktop-->
+        <main class="col-span-9">
+            <nav class="flex justify-end border-b py-2 px-5 bg-white shadow sticky top-0">
+                <RouterLink to="/create">
+                    <button class="bg-primary rounded-full px-4 py-2 text-white">
+                        New note
+                    </button>
+                </RouterLink>
+            </nav>
+
+            <RouterView></RouterView>
+        </main>
     </div>
 
 
