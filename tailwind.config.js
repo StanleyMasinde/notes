@@ -25,6 +25,7 @@ module.exports = {
         'tokyo-night-sunset': '#ff9e64',
         'tokyo-night-zen': '#7dcfff',
         'tokyo-night-geisha': '#bb9af7',
+        'tokyo-night-kimono': '#f7768e',
       },
     },
   },
