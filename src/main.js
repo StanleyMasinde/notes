@@ -5,6 +5,7 @@ import './index.css'
 // screens
 import indexScreen from './screens/index.vue'
 import showNoteScreen from './screens/show.vue'
+import showNoteDesktop from './screens/showdesktop.vue'
 import createScreen from './screens/create.vue'
 import editScreen from './screens/edit.vue'
 import searchScreen from './screens/search.vue'
@@ -22,7 +23,13 @@ if (process.env.NODE_ENV !== 'development' && navigator.serviceWorker) {
 const routes = [
     {
         path: '/',
-        component: indexScreen
+        component: indexScreen,
+        children: [
+            {
+                path: 'note/:id',
+                component: showNoteDesktop
+            }
+        ]
     },
     {
         path: '/search',
