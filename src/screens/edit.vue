@@ -24,7 +24,7 @@
         </ul>
     </nav>
     <textarea id="body" v-model="noteBody" class="
-        w-screen
+        w-full
         h-screen
         dark:bg-black
         dark:text-white
