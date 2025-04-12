@@ -1,7 +1,7 @@
 {
   "name": "notes",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A simple note taking app that does not track your data",
   "author": "Stanley Masinde",
   "license": "MIT",
