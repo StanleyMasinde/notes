@@ -82,9 +82,9 @@ const shareIntent = (social: Socials): string  => {
         </svg>
     </button>
 
-    <div v-if="showShareDialog" class="fixed inset-0 grid place-items-center backdrop-blur backdrop-brightness-50 dark:backdrop-brightness-100">
+    <div v-if="showShareDialog" class="fixed inset-0 grid place-items-center backdrop-blur-sm backdrop-brightness-50 dark:backdrop-brightness-100">
         <div>
-            <div class="bg-white/50 dark:bg-black/50 dark:shadow-white dark:shadow w-96 rounded-xl shadow-md p-5 flex flex-col gap-10 backdrop-blur-lg ">
+            <div class="bg-white/50 dark:bg-black/50 dark:shadow-white dark:shadow-sm w-96 rounded-xl shadow-md p-5 flex flex-col gap-10 backdrop-blur-lg ">
                 <div>
                     <h1 class=" text-xl font-bold">Share this note</h1>
                 </div>
@@ -164,7 +164,7 @@ const shareIntent = (social: Socials): string  => {
 
     <!--Clipboard toast-->
     <div v-if="showToast" class="fixed inset-x-0 bottom-2 flex justify-center">
-        <div class="relative bg-white/50 dark:bg-black/50 dark:text-white dark:shadow-white px-5 shadow-md dark:shadow rounded-lg w-56 py-4">
+        <div class="relative bg-white/50 dark:bg-black/50 dark:text-white dark:shadow-white px-5 shadow-md dark:shadow-sm rounded-lg w-56 py-4">
             <h1>Note copied to clipboard!</h1>
         </div>
     </div>
