@@ -2,17 +2,17 @@
  * The main service worker file. 
  * Author: Stanley Masinde
  */
-const version = 'v15'
+const version = 'v0.5.0'
 self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(version).then(async(cache) => {
-           await cache.addAll([
-                '/',
+	event.waitUntil(
+		caches.open(version).then(async (cache) => {
+			await cache.addAll([
+				'/',
 				'/search',
 				'/create',
-            ])
-        }).then(() => self.skipWaiting())
-    )
+			])
+		}).then(() => self.skipWaiting())
+	)
 })
 
 // // ----------------------------------------------------------------------------
