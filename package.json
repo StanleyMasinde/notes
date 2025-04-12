@@ -14,24 +14,24 @@
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' http://localhost:4173 'cypress open --e2e'"
   },
   "dependencies": {
-    "dexie": "^3.2.4",
-    "marked": "^11.1.1",
-    "vue": "^3.4.5",
-    "vue-router": "^4.2.5"
+    "dexie": "^3.2.7",
+    "marked": "^11.2.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "@vitejs/plugin-vue": "^5.0.2",
-    "@vue/test-utils": "^2.4.3",
-    "autoprefixer": "^10.4.16",
-    "cypress": "^13.6.2",
-    "jsdom": "^23.0.1",
-    "postcss": "^8.4.32",
-    "start-server-and-test": "^2.0.3",
-    "tailwindcss": "^3.4.0",
-    "vite": "^5.0.10",
-    "vitest": "^1.1.1"
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.3",
+    "@tailwindcss/typography": "^0.5.16",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/test-utils": "^2.4.6",
+    "cypress": "^13.17.0",
+    "jsdom": "^23.2.0",
+    "postcss": "^8.5.3",
+    "start-server-and-test": "^2.0.11",
+    "tailwindcss": "^4.1.3",
+    "vite": "^5.4.18",
+    "vitest": "^1.6.1"
   },
   "repository": {
     "type": "git",
