@@ -2,8 +2,6 @@
 
 ## Notes: The Powerful, Offline Note-Taking App 📝
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a3e32b59-108f-4d8a-b9ba-b8d5e4e811e6/deploy-status)](https://app.netlify.com/sites/notes-n/deploys)
-
 **Tired of bulky native apps that drain your battery and require constant internet access?** Notes is here to revolutionise your note-taking experience. Inspired by Samsung Notes and its clean One UI design language, this web application offers a **seamless, lightweight, and completely offline** solution for capturing your ideas, thoughts, and to-dos.
 
 **Why Choose Notes?**
