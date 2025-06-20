@@ -16,7 +16,7 @@
 
 **Ready to take control of your notes? Try it now!**
 
-[Live Demo](https://notes-n.netlify.app)
+[Live Demo](https://notes.stanleymasinde.com)
 
 ---
 
