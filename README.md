@@ -4,7 +4,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a3e32b59-108f-4d8a-b9ba-b8d5e4e811e6/deploy-status)](https://app.netlify.com/sites/notes-n/deploys)
 
-**Tired of bulky native apps that drain your battery and require constant internet access?** Notes is here to revolutionize your note-taking experience. Inspired by Samsung Notes and its clean One UI design language, this web application offers a **seamless, lightweight, and completely offline** solution for capturing your ideas, thoughts, and to-dos.
+**Tired of bulky native apps that drain your battery and require constant internet access?** Notes is here to revolutionise your note-taking experience. Inspired by Samsung Notes and its clean One UI design language, this web application offers a **seamless, lightweight, and completely offline** solution for capturing your ideas, thoughts, and to-dos.
 
 **Why Choose Notes?**
 
@@ -77,9 +77,9 @@ This project uses both [Vitest](https://vitest.dev) (for unit tests) and [Cypres
 
 To truly make Notes the go-to note-taking app for any OS, we're focusing on these key enhancements:
 
-*   **Cross-Device Sync (Backend Implementation):** Implementing a backend will enable seamless synchronization of notes across all your devices, ensuring your notes are always available, no matter where you are. This will include:
+*   **Cross-Device Sync (Backend Implementation):** Implementing a backend will enable seamless synchronisation of notes across all your devices, ensuring your notes are always available, no matter where you are. This will include:
     *   User accounts and authentication.
-    *   Real-time or near real-time synchronization.
+    *   Real-time or near real-time synchronisation.
     *   Conflict resolution for simultaneous edits.
 *   **Enhanced Desktop Experience:** While Notes already functions as a PWA on desktops, we plan to improve the desktop experience with features like:
     *   Window resizing and management.
@@ -90,7 +90,7 @@ To truly make Notes the go-to note-taking app for any OS, we're focusing on thes
     *   Tables
     *   Code highlighting with syntax support for various languages
     *   Embedded images and other media
-*   **Note Organization:** Improve the organization of notes by adding:
+*   **Note Organisation:** Improve the organisation of notes by adding:
     *   Folders and subfolders
     *   Tags and labels
     *   Pinning important notes
