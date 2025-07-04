@@ -20,7 +20,7 @@
 
 ---
 
-### Built with Modern Technologies 🛠️
+### Built with Modern Technologies
 
 *   **Frontend:** Vue.js, Vue Router, Tailwind CSS, HTML, CSS, JavaScript
 *   **Client-Side Storage:** Dexie.js (IndexedDB wrapper)
@@ -30,7 +30,7 @@
 
 ---
 
-### Key Features at a Glance ✨
+### Key Features at a Glance
 
 *   **Offline Functionality:** Works seamlessly without an internet connection.
 *   **PWA Installable:** Add Notes to your home screen for easy access.
@@ -42,7 +42,7 @@
 
 ---
 
-### Screenshots 📸
+### Screenshots
 
 <div style="display: flex; gap: 10px; justify-content: center;">
     <img width="200" alt="Light mode" src="https://user-images.githubusercontent.com/35426405/188124054-e980b2bc-0d88-46e3-b562-d9820a069f6d.png">
@@ -53,7 +53,7 @@
 
 ---
 
-### Development 🧑‍💻
+### Development
 
 This project uses [PNPM](https://pnpm.io) as a package manager.
 
@@ -62,7 +62,7 @@ This project uses [PNPM](https://pnpm.io) as a package manager.
 3.  Start the development server: `pnpm run dev`
 4.  Preview changes at: <http://localhost:5137>
 
-#### Testing 🧪
+#### Testing
 
 This project uses both [Vitest](https://vitest.dev) (for unit tests) and [Cypress](https://cypress.io) (for E2E and component testing).
 
@@ -71,7 +71,7 @@ This project uses both [Vitest](https://vitest.dev) (for unit tests) and [Cypres
 
 ---
 
-### Future Enhancements ✨
+### Future Enhancements
 
 To truly make Notes the go-to note-taking app for any OS, we're focusing on these key enhancements:
 
@@ -95,7 +95,7 @@ To truly make Notes the go-to note-taking app for any OS, we're focusing on thes
 
 ---
 
-### Contributions & Suggestions 🙏
+### Contributions & Suggestions
 
 Contributions are always welcome! If you have suggestions, bug reports, or would like to contribute code, please open an issue or submit a pull request.
 
