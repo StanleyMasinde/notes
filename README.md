@@ -6,13 +6,13 @@
 
 **Why Choose Notes?**
 
-*   **⚡️ Lightning-Fast & Offline-First:** Access your notes instantly, anywhere, anytime—even without an internet connection. Perfect for on-the-go note-taking.
-*   **📱 Seamless Integration:** Effortlessly share text from other apps directly into Notes, streamlining your workflow.
-*   **🌗 Beautiful Design with Dark Mode:** Enjoy a clean and intuitive interface with automatic dark mode based on your system preferences, inspired by Samsung's One UI.
-*   **🔎 Powerful Search:** Quickly find the information you need with a robust search function that indexes all your notes.
-*   **📦 Small Footprint:** Experience the power of a native app without the bloat. Notes is incredibly lightweight, saving valuable storage space on your device.
-*   **✨ PWA (Progressive Web App):** Install Notes directly to your home screen for quick access, just like a native app.
-*   **✍️ Markdown Support:** Format your notes with ease using Markdown syntax, adding structure and style to your writing.
+*   ** Lightning-Fast & Offline-First:** Access your notes instantly, anywhere, anytime—even without an internet connection. Perfect for on-the-go note-taking.
+*   ** Seamless Integration:** Effortlessly share text from other apps directly into Notes, streamlining your workflow.
+*   ** Beautiful Design with Dark Mode:** Enjoy a clean and intuitive interface with automatic dark mode based on your system preferences, inspired by Samsung's One UI.
+*   ** Powerful Search:** Quickly find the information you need with a robust search function that indexes all your notes.
+*   ** Small Footprint:** Experience the power of a native app without the bloat. Notes is incredibly lightweight, saving valuable storage space on your device.
+*   ** PWA (Progressive Web App):** Install Notes directly to your home screen for quick access, just like a native app.
+*   ** Markdown Support:** Format your notes with ease using Markdown syntax, adding structure and style to your writing.
 
 **Ready to take control of your notes? Try it now!**
 
